@@ -2,8 +2,6 @@
 
 A comprehensive web-based platform for the Sudanese Red Crescent Society(School Project) to manage medical aid, campaigns, connect patients with donors, and coordinate with medical providers.
 
-![Platform Preview](./assets/preview.png)
-
 ## 🌟 Features
 
 ### For Donors
@@ -166,6 +164,7 @@ npm run build
 ## 📝 License
 
 This project is developed for the Sudanese Red Crescent Society (stimulation for a school project).
+
 
 
 
