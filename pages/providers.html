@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Providers - Sudan Medical Aid</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="min-h-screen bg-background text-foreground antialiased font-sans">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border border-border">
+                        <svg viewBox="0 0 100 100" class="w-7 h-7 text-primary" fill="currentColor">
+                            <path
+                                d="M50 5C25.1 5 5 25.1 5 50s20.1 45 45 45c15.5 0 29.3-7.9 37.4-19.9C78.3 83.5 65.1 90 50 90c-22.1 0-40-17.9-40-40s17.9-40 40-40c15.1 0 28.3 8.4 35 20.7C76.9 17.6 64.4 5 50 5z" />
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="font-serif font-bold text-lg text-foreground leading-tight">
+                            Sudanese Red Crescent
+                        </h1>
+                        <p class="text-xs text-muted-foreground">Medical Aid Platform</p>
+                    </div>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html"
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted">Home</a>
+                    <a href="./cases.html"
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted">Medical
+                        Cases</a>
+                    <a href="./campaigns.html"
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted">Campaigns</a>
+                    <a href="./donate.html"
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted">Donate</a>
+                    <a href="./providers.html"
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-primary text-primary-foreground">Medical
+                        Providers</a>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="./dashboard.html"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-9 px-4 hover:bg-muted hover:text-foreground">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                        Dashboard
+                    </a>
+                    <a href="./submit-case.html"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-10 px-5 py-2 bg-gradient-hero text-primary-foreground shadow-glow hover:shadow-elevated hover:scale-[1.02] active:scale-[0.98]">
+                        Submit a Case
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <!-- Mobile Navigation Placeholder -->
+            <div id="mobile-menu" class="hidden lg:hidden py-4 border-t border-border animate-fade-in">
+                <div class="flex flex-col gap-2">
+                    <a href="../index.html"
+                        class="px-4 py-3 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted">Home</a>
+                    <a href="./cases.html"
+                        class="px-4 py-3 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted">Medical
+                        Cases</a>
+                    <a href="./providers.html"
+                        class="px-4 py-3 rounded-lg text-sm font-medium transition-colors bg-primary text-primary-foreground">Medical
+                        Providers</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="bg-gradient-hero py-12 lg:py-16 text-primary-foreground">
+        <div class="container mx-auto px-4">
+            <h1 class="font-serif text-3xl lg:text-5xl font-bold mb-4">Medical Providers</h1>
+            <p class="text-primary-foreground/80 text-lg max-w-2xl">
+                Partner with us to provide medical care and support to those in need across Sudan.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Providers List -->
+    <section class="container mx-auto px-4 py-8">
+        <div class="mb-8">
+            <h2 class="font-serif text-2xl font-bold mb-4">Verified Partner Providers</h2>
+            <p class="text-muted-foreground">These healthcare institutions have partnered with us to provide medical aid.</p>
+        </div>
+
+        <div id="providers-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Providers will be loaded here -->
+        </div>
+    </section>
+
+<section class="container mx-auto px-4 py-16" id="application-section">
+    <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+            <h2 class="font-serif text-2xl lg:text-3xl font-bold mb-6">Benefits of Partnership</h2>
+            <p class="text-muted-foreground mb-8">
+                As a partner provider, you'll be part of a network making a real difference in healthcare access across Sudan.
+            </p>
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                    <span>Direct impact on patient outcomes</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                    <span>Recognition on our platform as a verified provider</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+                    <span>Access to coordinate with specialized medical teams</span>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+                <div class="flex items-center gap-4">
+                    <i data-lucide="heart" class="w-10 h-10 text-primary"></i>
+                    <div>
+                        <p class="font-serif text-2xl font-bold">$671K+</p>
+                        <p class="text-sm text-muted-foreground">in services donated by partners</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="form-container" class="rounded-xl border bg-card text-card-foreground shadow-elevated">
+            <div class="p-6 lg:p-8">
+                <h3 class="font-serif text-xl font-semibold mb-6">Register as a Partner Provider</h3>
+
+                <form id="provider-form" class="space-y-6">
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-primary border-b border-border pb-2 text-sm uppercase tracking-wider">Provider Information</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium">Provider Name *</label>
+                                <input type="text" name="providerName" placeholder="Hospital/Pharmacy name" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium">Provider Type *</label>
+                                <select name="providerType" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                                    <option value="" disabled selected>Select type</option>
+                                    <option value="Hospital">Hospital</option>
+                                    <option value="Pharmacy">Pharmacy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium">License Number *</label>
+                                <input type="text" name="licenseNumber" placeholder="Medical license number" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium">Phone Number *</label>
+                                <input type="tel" name="phone" placeholder="+249 123 456 789" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Email *</label>
+                            <input type="email" name="email" placeholder="contact@provider.com" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Address *</label>
+                            <input type="text" name="address" placeholder="Full address including city" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-primary border-b border-border pb-2 text-sm uppercase tracking-wider">Service Donation Details</h4>
+                        
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Select Case to Support *</label>
+                            <select id="caseToSupport" name="caseToSupport" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                                <option value="" disabled selected>Loading available cases...</option>
+                                </select>
+                            <p class="text-[10px] text-muted-foreground">Select an approved public case to provide aid for.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Service Name *</label>
+                            <input type="text" name="serviceName" placeholder="Name of treatment or medication" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium">Service Type *</label>
+                                <select name="serviceType" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                                    <option value="Treatment">Treatment</option>
+                                    <option value="Medication">Medication</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium">Donation Type *</label>
+                                <select name="donationType" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                                    <option value="Full Donation">Full Donation</option>
+                                    <option value="Partial Donation">Partial Donation</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium">Estimated Value (USD) *</label>
+                            <input type="number" name="estimatedValue" step="0.01" placeholder="0.00" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" required>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-primary border-b border-border pb-2 text-sm uppercase tracking-wider">Medical Team</h4>
+                        <p class="text-xs text-muted-foreground">Add doctors and specialists in your team</p>
+                        
+                        <!-- Doctors Container -->
+                        <div id="doctors-container" class="space-y-4">
+                            <!-- Doctors will be added here dynamically -->
+                        </div>
+
+                        <!-- Add Doctor Button -->
+                        <button type="button" id="add-doctor-btn" class="inline-flex items-center justify-center gap-2 text-sm font-semibold h-10 px-4 border border-primary text-primary bg-transparent hover:bg-primary/10 transition-colors rounded-lg">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            Add Doctor
+                        </button>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-11 px-8 w-full bg-gradient-hero text-primary-foreground shadow-glow hover:shadow-elevated hover:scale-[1.02] transition-all">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="success-section" class="hidden container mx-auto px-4 py-16 animate-slide-up">
+    <div id="success-screen">
+            <div class="max-w-2xl mx-auto text-center rounded-xl border bg-card text-card-foreground shadow-elevated p-12">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-success/20 flex items-center justify-center">
+                    <i data-lucide="check-circle-2" class="w-10 h-10 text-success"></i>
+                </div>
+                <h2 class="font-serif text-2xl font-bold mb-4">Provider Application Submitted Successfully!</h2>
+                <p class="text-muted-foreground mb-8">
+                    Our medical team will review your partnership request and the selected case. You will receive an email confirmation within 48 hours.
+                </p>
+
+                <div class="bg-success/10 border border-success/30 rounded-lg p-4 mb-8">
+                    <p class="text-sm text-muted-foreground">
+                        <strong>Next steps:</strong> Our team will verify your credentials and contact you soon. You can edit or withdraw your application anytime from this page.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <button id="edit-case-btn"
+                        class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-10 px-4 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground">
+                        <i data-lucide="pencil" class="w-4 h-4"></i>
+                        Edit Application
+                    </button>
+                    <button id="submit-another"
+                        class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-10 px-4 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        Register Another Provider
+                    </button>
+                    <a href="../index.html"
+                        class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-10 px-4 py-2 bg-gradient-hero text-primary-foreground shadow-glow hover:shadow-elevated hover:scale-[1.02] active:scale-[0.98]">
+                        <i data-lucide="home" class="w-4 h-4"></i>
+                        Return Home
+                    </a>
+                    <button id="delete-case-btn"
+                        class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-10 px-4 py-2 border border-destructive text-destructive bg-background hover:bg-destructive/10">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        Withdraw Application
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+    <footer class="bg-foreground text-primary-foreground">
+        <div class="container mx-auto px-4 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-lg">Sudanese Red Crescent</h3>
+                            <p class="text-xs text-primary-foreground/70">Medical Aid Platform</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-primary-foreground/80 leading-relaxed">
+                        Connecting those in need with compassionate donors to provide life-saving medical care across
+                        Sudan.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./cases.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Medical
+                                Cases</a></li>
+                        <li><a href="./campaigns.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Campaigns</a>
+                        </li>
+                        <li><a href="./donate.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Donate</a>
+                        </li>
+                        <li><a href="./submit-case.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Submit
+                                a Case</a></li>
+                        <li><a href="./providers.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Medical
+                                Providers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-serif font-semibold text-lg mb-4">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-sm text-primary-foreground/80">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i>
+                            Khartoum, Sudan
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-primary-foreground/80">
+                            <i data-lucide="phone" class="w-4 h-4 text-primary"></i>
+                            +249 123 456 789
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-primary-foreground/80">
+                            <i data-lucide="mail" class="w-4 h-4 text-primary"></i>
+                            info@sudanrc-aid.org
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div>
+                    <h4 class="font-serif font-semibold text-lg mb-4">Follow Us</h4>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-primary-foreground/60">
+                        Stay updated with our latest campaigns and success stories.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-primary-foreground/60">
+                    © 2024 Sudanese Red Crescent Medical Aid. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-primary-foreground/60">
+                    <a href="#" class="hover:text-primary-foreground transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary-foreground transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/providers.js"></script>
+    <script src="../js/nav-auth.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

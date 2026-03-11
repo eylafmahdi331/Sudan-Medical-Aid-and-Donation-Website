@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Details - Sudan Medical Aid</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-background text-foreground antialiased font-sans">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border border-border">
+                        <svg viewBox="0 0 100 100" class="w-7 h-7 text-primary" fill="currentColor">
+                            <path d="M50 5C25.1 5 5 25.1 5 50s20.1 45 45 45c15.5 0 29.3-7.9 37.4-19.9C78.3 83.5 65.1 90 50 90c-22.1 0-40-17.9-40-40s17.9-40 40-40c15.1 0 28.3 8.4 35 20.7C76.9 17.6 64.4 5 50 5z" />
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="font-serif font-bold text-lg text-foreground leading-tight">Sudanese Red Crescent</h1>
+                        <p class="text-xs text-muted-foreground">Medical Aid Platform</p>
+                    </div>
+                </a>
+                <a href="./cases.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Back to Cases</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Left Column: Case Details -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Case Image -->
+                <div class="relative rounded-2xl overflow-hidden shadow-lg h-96 bg-muted group">
+                    <img id="case-image" src="../assets/case-1.jpg" alt="Case Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1576091160550-112173f31c77?w=800&q=80'">
+                    <span class="absolute top-4 right-4 bg-card/95 backdrop-blur px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 border border-border">
+                        <i data-lucide="info" class="w-4 h-4"></i>
+                        <span id="case-urgency">Loading...</span>
+                    </span>
+                </div>
+
+                <!-- Quick Info Icons Below Image -->
+                <div class="flex gap-6 pb-4 border-b border-border">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <div class="text-sm">
+                            <p class="text-xs text-muted-foreground uppercase font-semibold">Location</p>
+                            <p id="case-city-small" class="font-semibold">-</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="calendar" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <div class="text-sm">
+                            <p class="text-xs text-muted-foreground uppercase font-semibold">Created</p>
+                            <p id="case-date-small" class="font-semibold">-</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <i data-lucide="users" class="w-5 h-5 text-primary"></i>
+                        </div>
+                        <div class="text-sm">
+                            <p class="text-xs text-muted-foreground uppercase font-semibold">Donors</p>
+                            <p id="case-donors-small" class="font-semibold text-primary text-lg">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Title and Header -->
+                <div>
+                    <span id="specialty-tag" class="inline-block text-xs font-semibold uppercase bg-primary/10 text-primary px-3 py-1 rounded-full mb-4"></span>
+                    <h1 id="case-title" class="font-serif text-4xl font-bold mb-4">Loading...</h1>
+                    
+                    <!-- Status -->
+                    <div class="mb-6">
+                        <p class="text-xs text-muted-foreground uppercase font-semibold mb-1">Status</p>
+                        <p id="case-status" class="font-semibold text-sm text-green-600">Active</p>
+                    </div>
+                </div>
+
+                <!-- Tabs Header Card -->
+                <div class="rounded-xl border border-border bg-card p-6">
+                    <div class="flex gap-2 mb-6">
+                        <button onclick="switchTab('about')" id="tab-about" class="tab-btn flex-1 px-6 py-3 text-sm font-semibold border-b-2 border-primary text-foreground rounded-lg bg-muted/50 transition-all">
+                            <i data-lucide="info" class="w-4 h-4 inline mr-2"></i>
+                            About
+                        </button>
+                        <button onclick="switchTab('donors')" id="tab-donors" class="tab-btn flex-1 px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-muted-foreground rounded-lg hover:bg-muted/30 transition-all">
+                            <i data-lucide="heart" class="w-4 h-4 inline mr-2"></i>
+                            Donors (<span id="donors-list-count">0</span>)
+                        </button>
+                        <button onclick="switchTab('updates')" id="tab-updates" class="tab-btn flex-1 px-6 py-3 text-sm font-semibold border-b-2 border-transparent text-muted-foreground rounded-lg hover:bg-muted/30 transition-all">
+                            <i data-lucide="bell" class="w-4 h-4 inline mr-2"></i>
+                            Updates (<span id="updates-list-count">0</span>)
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div id="tab-content" class="py-8 min-h-96">
+                        <!-- Content loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Donate Card -->
+            <div class="lg:col-span-1">
+                <div class="rounded-2xl border bg-card text-card-foreground shadow-lg sticky top-24 p-6 space-y-6">
+                    <!-- Fundraising Goal -->
+                    <div>
+                        <h3 class="font-serif text-lg font-bold mb-4">Fundraising Goal</h3>
+                        
+                        <div class="flex items-baseline gap-2 mb-3">
+                            <span id="amount-raised" class="text-3xl font-serif font-bold text-primary">$0</span>
+                            <span id="amount-goal" class="text-muted-foreground text-sm">of $0</span>
+                        </div>
+
+                        <div class="w-full bg-muted rounded-full h-3 mb-3">
+                            <div id="progress-bar" class="bg-gradient-hero h-3 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                        </div>
+
+                        <p class="text-xs font-semibold text-muted-foreground uppercase">
+                            <span id="progress-percent">0</span>% funded
+                        </p>
+                    </div>
+
+                    <!-- Quick Donate -->
+                    <div class="space-y-3">
+                        <h4 class="text-sm font-semibold">Quick Donate</h4>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button onclick="donateAmount(25)" class="py-3 border border-input rounded-lg text-sm font-semibold hover:bg-muted transition-colors flex items-center justify-center">$25</button>
+                            <button onclick="donateAmount(50)" class="py-3 border border-input rounded-lg text-sm font-semibold hover:bg-muted transition-colors flex items-center justify-center">$50</button>
+                            <button onclick="donateAmount(100)" class="py-3 bg-gradient-hero text-primary-foreground rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity flex items-center justify-center">$100</button>
+                        </div>
+                    </div>
+
+                    <!-- Custom Amount -->
+                    <input type="number" id="custom-amount" placeholder="Custom amount" class="w-full px-4 py-3 border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+
+                    <!-- Main Buttons -->
+                    <div class="space-y-2 pt-4 border-t border-border">
+                        <button id="donate-btn" class="w-full bg-gradient-hero text-primary-foreground py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                            Donate Now
+                        </button>
+
+                        <button id="share-btn" class="w-full border border-primary text-primary py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+                            <i data-lucide="copy" class="w-4 h-4"></i>
+                            Copy Link
+                        </button>
+                    </div>
+
+                    <!-- Share Info -->
+                    <div class="text-xs text-muted-foreground text-center pt-2">
+                        Share this case to help more people contribute
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-foreground text-primary-foreground mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/60">
+                <p>© 2024 Sudanese Red Crescent Medical Aid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/case-details.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

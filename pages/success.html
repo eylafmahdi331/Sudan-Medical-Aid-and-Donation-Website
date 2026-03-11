@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Case Submitted Successfully</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen flex items-center justify-center">
+
+  <section class="container mx-auto px-4 py-16">
+    <div class="max-w-2xl mx-auto text-center rounded-xl border bg-white text-gray-800 shadow-xl p-12">
+      
+      <!-- Success Icon -->
+      <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-red-100 flex items-center justify-center">
+        <i data-lucide="check-circle" class="w-10 h-10 text-red-600"></i>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="font-serif text-3xl font-bold mb-4 text-gray-900">Case Submitted Successfully!</h2>
+      <p class="text-gray-600 mb-8">
+        Thank you for submitting your case. Our medical team will review the details and contact you within 48 hours. You'll receive an email confirmation shortly.
+      </p>
+
+      <!-- Manage Case Card -->
+      <div class="rounded-lg border bg-gray-50 shadow-inner p-6 mb-8">
+        <h3 class="text-lg font-semibold mb-4 text-gray-700">Manage Your Case</h3>
+        <div class="flex justify-center gap-4">
+          <button onclick="editCase()" class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-sm font-medium text-white transition">
+            <i data-lucide="pencil" class="w-4 h-4"></i> Edit Case
+          </button>
+          <button onclick="deleteCase()" class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-sm font-medium text-white transition">
+            <i data-lucide="trash-2" class="w-4 h-4"></i> Delete Case
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-center gap-4">
+        <button onclick="window.location.href='submit-case.html'" class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-sm font-medium text-white transition">
+          Submit Another Case
+        </button>
+        <button onclick="window.location.href='/sudan-medical-aid/sudan-medical-aid/index.html'" class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-sm font-medium text-white transition">
+          Return Home
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Get caseId from query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const caseId = urlParams.get('caseId');
+
+    function editCase() {
+      window.location.href = `submit-case.html?editCaseId=${caseId}`;
+    }
+
+    async function deleteCase() {
+      if (!confirm('Delete this case?')) return;
+      try {
+        const response = await fetch(`../api/delete_case.php?id=${caseId}`);
+        const data = await response.json();
+        if (response.ok && data.success) {
+          alert('Case deleted');
+          window.location.href = '/sudan-medical-aid/sudan-medical-aid/index.html';
+        } else {
+          alert(data.error || 'Delete failed');
+        }
+      } catch (err) {
+        alert('Delete error');
+      }
+    }
+  </script>
+</body>
+</html>

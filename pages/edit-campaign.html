@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Campaign - Sudan Medical Aid</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-background text-foreground antialiased font-sans">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border border-border">
+                        <svg viewBox="0 0 100 100" class="w-7 h-7 text-primary" fill="currentColor">
+                            <path d="M50 5C25.1 5 5 25.1 5 50s20.1 45 45 45c15.5 0 29.3-7.9 37.4-19.9C78.3 83.5 65.1 90 50 90c-22.1 0-40-17.9-40-40s17.9-40 40-40c15.1 0 28.3 8.4 35 20.7C76.9 17.6 64.4 5 50 5z" />
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="font-serif font-bold text-lg text-foreground leading-tight">Sudanese Red Crescent</h1>
+                        <p class="text-xs text-muted-foreground">Medical Aid Platform</p>
+                    </div>
+                </a>
+                <a href="./campaigns.html" class="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Back to Campaigns</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="relative bg-gradient-hero py-16 lg:py-24 overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="font-serif text-3xl lg:text-5xl font-bold text-primary-foreground mb-4">
+                    Edit Campaign
+                </h1>
+                <p class="text-primary-foreground/80 text-lg">
+                    Make changes to your campaign details and events.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="container mx-auto px-4 py-12 animate-slide-up" id="form-section">
+        <div class="max-w-3xl mx-auto">
+            <form id="edit-campaign-form" class="space-y-8">
+
+                <!-- Section 1: Campaign Details -->
+                <div class="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
+                    <div class="bg-gradient-card p-6 border-b border-border">
+                        <h2 class="font-serif text-2xl font-bold flex items-center gap-3">
+                            <i data-lucide="file-text" class="w-6 h-6 text-primary"></i>
+                            Campaign Details
+                        </h2>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="space-y-2">
+                            <label for="title" class="text-base font-medium">Campaign Title *</label>
+                            <input type="text" id="title" placeholder="Campaign title"
+                                class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                required>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="description" class="text-base font-medium">Campaign Description *</label>
+                            <textarea id="description" rows="5"
+                                placeholder="Describe the campaign..."
+                                class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-none"
+                                required></textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label for="targetAmount" class="text-base font-medium">Target Amount (USD) *</label>
+                                <input type="number" id="targetAmount" placeholder="Target amount"
+                                    class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                    required>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="targetPeople" class="text-base font-medium">Target People *</label>
+                                <input type="number" id="targetPeople" placeholder="Number of beneficiaries"
+                                    class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label for="startDate" class="text-base font-medium">Start Date *</label>
+                                <input type="date" id="startDate"
+                                    class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                    required>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="endDate" class="text-base font-medium">End Date *</label>
+                                <input type="date" id="endDate"
+                                    class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Campaign Events -->
+                <div class="rounded-xl border bg-card text-card-foreground shadow-sm overflow-hidden">
+                    <div class="bg-gradient-card p-6 border-b border-border">
+                        <h2 class="font-serif text-2xl font-bold flex items-center gap-3">
+                            <i data-lucide="calendar" class="w-6 h-6 text-primary"></i>
+                            Campaign Events
+                        </h2>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div id="events-container" class="space-y-6">
+                            <!-- Events loaded here -->
+                        </div>
+
+                        <button type="button" id="add-event-btn"
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold h-10 px-6 border border-primary text-primary bg-transparent hover:bg-primary/10 transition-colors">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            Add Another Event
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Update Button -->
+                <button type="submit" id="submit-btn"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-lg font-semibold h-12 px-8 w-full bg-gradient-hero text-primary-foreground shadow-glow hover:shadow-elevated hover:scale-[1.02] active:scale-[0.98]">
+                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                    Update Campaign
+                </button>
+
+                <!-- Delete Button -->
+                <button type="button" id="delete-btn"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-lg font-semibold h-12 px-8 w-full border border-destructive text-destructive bg-background hover:bg-destructive/10">
+                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                    Delete Campaign
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-foreground text-primary-foreground mt-16">
+        <div class="container mx-auto px-4 py-12">
+            <div class="border-t border-primary-foreground/20 pt-8 text-center text-sm text-primary-foreground/60">
+                <p>© 2024 Sudanese Red Crescent Medical Aid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/edit-campaign.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

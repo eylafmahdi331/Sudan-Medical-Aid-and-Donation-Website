@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Cases - Sudan Medical Aid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-background text-foreground antialiased font-sans">
+
+    <nav class="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md border border-border">
+                        <svg viewBox="0 0 100 100" class="w-7 h-7 text-primary" fill="currentColor">
+                            <path d="M50 5C25.1 5 5 25.1 5 50s20.1 45 45 45c15.5 0 29.3-7.9 37.4-19.9C78.3 83.5 65.1 90 50 90c-22.1 0-40-17.9-40-40s17.9-40 40-40c15.1 0 28.3 8.4 35 20.7C76.9 17.6 64.4 5 50 5z"/>
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="font-serif font-bold text-lg text-foreground leading-tight">Sudanese Red Crescent</h1>
+                        <p class="text-xs text-muted-foreground">Medical Aid Platform</p>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="../index.html" class="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted">Home</a>
+                    <a href="./cases.html" class="px-4 py-2 rounded-lg text-sm font-medium bg-primary text-primary-foreground shadow-sm">Medical Cases</a>
+                    <a href="./campaigns.html" class="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted">Campaigns</a>
+                    <a href="./donate.html" class="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted">Donate</a>
+                    <a href="./providers.html" class="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted">Medical Providers</a>
+                </div>
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="./dashboard.html" class="inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold h-9 px-4 hover:bg-muted">
+                        <i data-lucide="user" class="w-4 h-4"></i> Dashboard
+                    </a>
+                    <a href="./submit-case.html" class="inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold h-10 px-5 bg-primary text-primary-foreground shadow-glow hover:scale-[1.02] transition-transform">
+                        Submit a Case
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-hero py-12 lg:py-16 text-primary-foreground">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h1 class="font-serif text-3xl lg:text-5xl font-bold mb-4">Medical Cases</h1>
+                    <p class="text-primary-foreground/80 text-lg mb-6">Browse verified medical cases and make a direct impact.</p>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                            <span class="text-xs opacity-80 block mb-1">Total Cases</span>
+                            <p class="font-serif text-2xl font-bold" id="total-cases-stat">0</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                            <span class="text-xs opacity-80 block mb-1">Urgent</span>
+                            <p class="font-serif text-2xl font-bold" id="urgent-cases-stat">0</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                            <span class="text-xs opacity-80 block mb-1">Total Raised</span>
+                            <p class="font-serif text-2xl font-bold" id="total-raised-stat">$0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                    <h3 class="font-semibold mb-4 flex items-center gap-2 text-sm uppercase tracking-wider">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Distribution
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Treatments</span>
+                                <span id="treatment-count-stat">0</span>
+                            </div>
+                            <div class="h-1.5 bg-white/20 rounded-full w-full overflow-hidden">
+                                <div id="treatment-bar" class="bg-white h-full transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Medications</span>
+                                <span id="medication-count-stat">0</span>
+                            </div>
+                            <div class="h-1.5 bg-white/20 rounded-full w-full overflow-hidden">
+                                <div id="medication-bar" class="bg-white h-full transition-all duration-700" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 border-b border-border sticky top-16 lg:top-20 z-40 bg-background/95 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-6 items-center justify-between">
+                
+                <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+                    <div class="relative flex-1 min-w-[350px]">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                        <input type="text" id="search-input" placeholder="Search conditions, names, or locations..." class="h-11 w-full rounded-xl border border-input bg-background px-3 pl-10 text-sm focus:ring-2 focus:ring-primary outline-none shadow-sm" />
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <button id="filter-urgent" class="inline-flex items-center gap-2 rounded-xl text-xs font-bold h-11 px-5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all shadow-sm">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Urgent Only
+                        </button>
+                        <button id="sort-btn" class="inline-flex items-center gap-2 rounded-xl text-xs font-bold h-11 px-5 border border-input bg-background hover:bg-muted transition-all shadow-sm">
+                            <i data-lucide="arrow-up-down" class="w-4 h-4"></i> <span id="sort-label">Newest First</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 bg-muted/30 p-1 rounded-2xl">
+                    <button data-type="all" class="type-filter-btn inline-flex items-center h-10 px-6 rounded-xl text-xs font-bold bg-primary text-primary-foreground shadow-md">All</button>
+                    <button data-type="treatment" class="type-filter-btn inline-flex items-center gap-2 h-10 px-5 rounded-xl text-xs font-bold text-muted-foreground hover:text-foreground transition-colors">
+                        <i data-lucide="stethoscope" class="w-4 h-4"></i> Treatment
+                    </button>
+                    <button data-type="medication" class="type-filter-btn inline-flex items-center gap-2 h-10 px-5 rounded-xl text-xs font-bold text-muted-foreground hover:text-foreground transition-colors">
+                        <i data-lucide="pill" class="w-4 h-4"></i> Medication
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto px-4 py-16">
+        <div class="flex items-center justify-between mb-10">
+            <h2 class="text-3xl font-bold font-serif">Active Cases</h2>
+            <p id="results-count" class="text-muted-foreground text-sm font-medium bg-muted px-4 py-1.5 rounded-full">Loading...</p>
+        </div>
+
+        <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            </div>
+
+        <div id="no-results" class="hidden text-center py-32 bg-muted/10 rounded-3xl mt-8">
+            <i data-lucide="search-x" class="w-16 h-16 text-muted-foreground mx-auto mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">No Cases Found</h3>
+            <p class="text-muted-foreground mb-8">Try broadening your search criteria.</p>
+            <button id="clear-filters-main" class="px-10 py-3.5 bg-primary text-primary-foreground rounded-xl font-bold shadow-xl shadow-primary/20 hover:scale-105 transition-transform">Clear All Filters</button>
+        </div>
+    </section>
+
+    
+
+     <!-- Footer -->
+    <footer class="bg-foreground text-primary-foreground">
+        <div class="container mx-auto px-4 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                            <i data-lucide="heart" class="w-5 h-5 text-primary-foreground"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif font-bold text-lg">Sudanese Red Crescent</h3>
+                            <p class="text-xs text-primary-foreground/70">Medical Aid Platform</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-primary-foreground/80 leading-relaxed">
+                        Connecting those in need with compassionate donors to provide life-saving medical care across
+                        Sudan.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif font-semibold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="./cases.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Medical
+                                Cases</a></li>
+                        <li><a href="./campaigns.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Campaigns</a>
+                        </li>
+                        <li><a href="./donate.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Donate</a>
+                        </li>
+                        <li><a href="./submit-case.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Submit
+                                a Case</a></li>
+                        <li><a href="./providers.html"
+                                class="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Medical
+                                Providers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-serif font-semibold text-lg mb-4">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-sm text-primary-foreground/80">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i>
+                            Khartoum, Sudan
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-primary-foreground/80">
+                            <i data-lucide="phone" class="w-4 h-4 text-primary"></i>
+                            +249 123 456 789
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-primary-foreground/80">
+                            <i data-lucide="mail" class="w-4 h-4 text-primary"></i>
+                            info@sudanrc-aid.org
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div>
+                    <h4 class="font-serif font-semibold text-lg mb-4">Follow Us</h4>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-primary-foreground/60">
+                        Stay updated with our latest campaigns and success stories.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="mt-12 pt-8 border-t border-primary-foreground/20 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-primary-foreground/60">
+                    © 2024 Sudanese Red Crescent Medical Aid. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-primary-foreground/60">
+                    <a href="#" class="hover:text-primary-foreground transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary-foreground transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/nav-auth.js"></script>
+    <script src="../js/cases.js"></script>
+</body>
+</html>

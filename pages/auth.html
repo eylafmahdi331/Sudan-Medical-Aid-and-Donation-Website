@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication - Sudan Medical Aid</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="min-h-screen bg-background text-foreground antialiased font-sans flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <a href="../index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform border border-border">
+                        <svg viewBox="0 0 100 100" class="w-7 h-7 text-primary" fill="currentColor">
+                            <path
+                                d="M50 5C25.1 5 5 25.1 5 50s20.1 45 45 45c15.5 0 29.3-7.9 37.4-19.9C78.3 83.5 65.1 90 50 90c-22.1 0-40-17.9-40-40s17.9-40 40-40c15.1 0 28.3 8.4 35 20.7C76.9 17.6 64.4 5 50 5z" />
+                        </svg>
+                    </div>
+                    <div class="hidden sm:block">
+                        <h1 class="font-serif font-bold text-lg text-foreground leading-tight">
+                            Sudanese Red Crescent
+                        </h1>
+                        <p class="text-xs text-muted-foreground">Medical Aid Platform</p>
+                    </div>
+                </a>
+                <div class="flex items-center gap-3">
+                    <a href="../index.html" class="text-sm font-medium text-muted-foreground hover:text-foreground"> Back
+                        to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center py-12 lg:py-20 px-4">
+        <div class="w-full max-w-md">
+
+            <!-- Logo & Title -->
+            <div class="text-center mb-8">
+                <div
+                    class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-hero flex items-center justify-center shadow-glow">
+                    <i data-lucide="heart" class="w-8 h-8 text-primary-foreground"></i>
+                </div>
+                <h1 class="font-serif text-2xl font-bold mb-2" id="page-title">
+                    Welcome Back
+                </h1>
+                <p class="text-muted-foreground" id="page-subtitle">
+                    Sign in to track your donations and cases
+                </p>
+            </div>
+
+            <!-- Auth Card -->
+            <div class="rounded-xl border bg-card text-card-foreground shadow-elevated">
+                <div class="p-6 lg:p-8">
+
+                    <!-- Toggle -->
+                    <div class="flex rounded-lg bg-muted p-1 mb-6">
+                        <button id="tab-login"
+                            class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors bg-card text-foreground shadow-sm">
+                            Sign In
+                        </button>
+                        <button id="tab-signup"
+                            class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground">
+                            Sign Up
+                        </button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="auth-form" class="space-y-4">
+
+                        <!-- Name Fields (Signup Only) -->
+                        <div id="name-fields" class="grid grid-cols-2 gap-4 hidden">
+                            <div class="space-y-2">
+                                <label for="firstName" class="text-sm font-medium">First Name</label>
+                                <div class="relative">
+                                    <i data-lucide="user"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                                    <input type="text" id="firstName" name="firstName" placeholder="First name"
+                                        class="flex h-10 w-full rounded-md border border-input bg-background pl-10 px-3 py-2 text-sm">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="lastName" class="text-sm font-medium">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Last name"
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="space-y-2">
+                            <label for="email" class="text-sm font-medium">Email Address</label>
+                            <div class="relative">
+                                <i data-lucide="mail"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required
+                                    class="flex h-10 w-full rounded-md border border-input bg-background pl-10 px-3 py-2 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="space-y-2">
+                            <label for="password" class="text-sm font-medium">Password</label>
+                            <div class="relative">
+                                <i data-lucide="lock"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
+                                <input type="password" id="password" name="password" placeholder="Enter your password"
+                                    required
+                                    class="flex h-10 w-full rounded-md border border-input bg-background pl-10 px-3 py-2 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Forgot Password (Login Only) -->
+                        <div class="text-right" id="forgot-password">
+                            <a href="#" class="text-sm text-primary hover:underline">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn"
+                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 px-8 w-full bg-gradient-hero text-primary-foreground shadow-glow hover:shadow-elevated hover:scale-[1.02] active:scale-[0.98]">
+                            <span id="btn-text">Sign In</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+
+                    <!-- Footer -->
+                    <p class="text-center text-sm text-muted-foreground mt-6">
+                        <span id="footer-text">Don't have an account? </span>
+                        <button type="button" id="toggle-auth-btn" class="text-primary hover:underline font-medium">
+                            Sign up
+                        </button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-6">
+                <a href="../index.html" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    ← Back to Home
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/auth.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
