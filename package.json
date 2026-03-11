@@ -1,0 +1,12 @@
+{
+    "name": "sudan-medical-aid-html",
+    "version": "1.0.0",
+    "description": "HTML/CSS/JS version of Sudan Medical Aid",
+    "scripts": {
+        "build": "npx tailwindcss -i ./css/input.css -o ./css/styles.css",
+        "watch": "npx tailwindcss -i ./css/input.css -o ./css/styles.css --watch"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.4.17"
+    }
+}
