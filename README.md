@@ -167,11 +167,7 @@ npm run build
 
 This project is developed for the Sudanese Red Crescent Society (stimulation for a school project).
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+
 
 
